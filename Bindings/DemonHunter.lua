@@ -1,0 +1,2 @@
+function ExoWow:ConfigureDemonHunterBindings()
+end
