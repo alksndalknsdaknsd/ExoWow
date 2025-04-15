@@ -32,10 +32,11 @@ function ExoWow:OnDisable()
 end
 
 function ExoWow:HandleEvent(eventName, ...)
-  ExoWow:Print(eventName, ...)
+  -- ExoWow:Print(eventName, ...)
 
   ExoWow.inCombat = InCombatLockdown()
   ExoWow.class = UnitClass('player')
+  ExoWow.name = UnitName('player')
   local specIndex = GetSpecialization();
   ExoWow.spec = select(2, GetSpecializationInfo(specIndex));
   ExoWow.role = GetSpecializationRole(specIndex);

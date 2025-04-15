@@ -34,7 +34,7 @@ function ExoWow:ConfigureArenaFocusMacros()
   local focusUnit = '@arena' .. tostring(arenaToFocus)
   local nGlobalMacros, nCharMacros = GetNumMacros();
 
-  ExoWow:Print('Focus to ', focusUnit)
+  -- ExoWow:Print('Focus to ', focusUnit)
 
   -- Edit global macros
   for i = 1, nGlobalMacros do
@@ -49,8 +49,20 @@ function ExoWow:ConfigureArenaFocusMacros()
   return arenaToFocus
 end
 
+function ExoWow:RestoreMacros()
+  local nGlobalMacros, nCharMacros = GetNumMacros();
+  for i = 1, nGlobalMacros do
+    overwriteArenaFocusMacro("@focus", i);
+  end
+  for i = 1, nCharMacros do
+    overwriteArenaFocusMacro("@focus", 120 + i)
+  end
+end
+
 function ExoWow:ConfigureMacros(eventName)
   if eventName == 'ARENA_PREP_OPPONENT_SPECIALIZATIONS' then
     ExoWow.arenaToFocus = ExoWow:ConfigureArenaFocusMacros()
+  else
+    ExoWow:RestoreMacros()
   end
 end

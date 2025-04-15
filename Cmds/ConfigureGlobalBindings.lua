@@ -27,10 +27,15 @@ local globalMacros = {
 /use [noflying] !Traveler's Tundra Mammoth
 ]],
   ["Z"] = [[
+/use [mod:alt,nomounted] !Wandering Ancient
+/use [nomounted,noflyable] Sarge's Tale
 /use [nomounted] Ruby Panther
 /cast [mounted,noflying] Skyward Ascent
 /cast [mounted,flying] Surge Forward
 ]],
+
+  ["BUTTON3"] = "/ping [@player] assist",
+  ["CTRL-BUTTON3"] = "/focus [@mouseover,exists]",
 
   ["PRINTSCREEN"] = "",
   ["F14"] = "/exo bg",
@@ -39,7 +44,10 @@ local globalMacros = {
   ["F17"] = "/lua",
   ["F18"] = "/fstack",
   ["SHIFT-F18"] = "/logout",
-  ["F19"] = "/exo bindings",
+  ["F19"] = [[
+/exo ui
+/exo bindings
+  ]],
   ["SHIFT-F19"] = "/reload",
 
   ["NUMPAD0"] = "",
@@ -63,12 +71,8 @@ local globalMacros = {
 
 };
 
-local globalScripts = {
-  ["F16"] = "ConfigureUi",
-};
-
 function ExoWow:ConfigureGlobalBindings()
-  ExoWow:Print("Configuring global bindings");
+  -- ExoWow:Print("Configuring global bindings");
   for key, macrotext in pairs(globalMacros) do
     ExoWow:SetGlobalBindingMacro(key, macrotext);
   end
